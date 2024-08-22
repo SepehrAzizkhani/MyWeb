@@ -7,6 +7,7 @@ In the admin dashboard, you can view and edit any tables related to the entities
 In the front-end of this website (which includes the public pages and an admin panel), two open source projects are used and are available through the links below:
 
 https://github.com/frivizn/news-website-template
+---
 https://github.com/mazipan/bootstrap4-admin-dashboard-template
 
 Before running the project ,connect the database using the commands written in the 'application.properties'.
