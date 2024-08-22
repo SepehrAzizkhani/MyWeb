@@ -1,0 +1,126 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <div th:replace="fragment/layout::head"> </div>
+  <title>Home | Tech News</title>
+</head>
+<body id="top">
+<div th:replace="fragment/layout::header"> </div>
+    <!-- Main -->
+    <main class="main" role="main">
+
+      <div class="top-news">
+
+        <section class="latest-news">
+            <div class="slideshow contain">
+                <div class="slide"  th:each="post, i : ${posts}">
+                    <a  th:href="@{/posts/{id}(id=${post.getId()})}">
+                        <img  th:src="'/img/'+${post.getCover()}" alt="slide @{i.index + 1}" class="breaking-img">
+                        <div class="breaking-title"><p th:text="${post.getTitle()}"></p></div>
+                    </a>
+                </div>
+                <div class="breaking"><p>Breaking News</p></div>
+                <a id="prevBtn" class="left carousel-control"><span>&#10094;</span></a>
+                <a id="nextBtn" class="right carousel-control"><span>&#10095;</span></a>
+            </div>
+        </section> <!-- End of class="latest-news" -->
+
+          <aside class="latest" role="complementary">
+              <h2>Latest Posts</h2>
+              <a  th:each="post : ${posts}" th:href="@{/posts/{id}(id=${post.getId()})}" >
+                  <div class="latest-headline top-comments">
+                      <h3 th:text="${post.getTitle()}"></h3>
+                      <p style="  margin-top: 5px;
+                            color:#0c0c0c;
+                            font-size: 0.7rem;
+                            font-weight: normal;
+                             margin-top: 0;
+                              color:#0C0C0CFF;"
+                         th:text="${#temporals.format(post.getUpdatedAt(),'yyyy-MM-dd HH:mm')}"></p>
+                  </div>
+              </a>
+          </aside>
+
+      </div> <!-- End of class="top-news" -->
+
+      <section class="sport" >
+         <h2><a class="link" th:href="@{/Artificial Intelligence}" >Artificial Intelligence <span class="fa fa-angle-right" style="font-weight: bold;font-size:20px"></span></a></h2>
+        <div class="story"th:each="post : ${postsAi}">
+                <a  th:href="@{/posts/{id}(id=${post.getId()})}">
+                    <div class="story-img">
+                      <img th:src="'/img/'+${post.getCover()}" style="max-height: 195px">
+                    </div>
+                    <div class="story-headline">
+                      <h3 th:text="${post.getTitle()}"></h3>
+                      <p class="exact-time" th:text="${#temporals.format(post.getUpdatedAt(),'yyyy-MM-dd HH:mm')}"></p>
+                    </div>
+                </a>
+        </div>
+      </section> <!-- End of Artificial Intelligence" -->
+
+
+      <section class="entertainment">
+          <h2> <a class="link"th:href="@{/Celebrities}" >Celebrities <span class="fa fa-angle-right" style="font-weight: bold;font-size:20px"></span></a></h2>
+          <div class="story"th:each="post : ${postsCelebrity}">
+              <a  th:href="@{/posts/{id}(id=${post.getId()})}">
+                  <div class="story-img">
+                      <img th:src="'/img/'+${post.getCover()}" style="max-height: 195px">
+                  </div>
+                  <div class="story-headline">
+                      <h3 th:text="${post.getTitle()}"></h3>
+                      <p class="exact-time" th:text="${#temporals.format(post.getUpdatedAt(),'yyyy-MM-dd HH:mm')}"></p>
+                  </div>
+              </a>
+          </div>
+      </section> <!-- End of Celebrities-->
+      <section class="sport" >
+         <h2> <a class="link" th:href="@{/Products}" >Products<span class="fa fa-angle-right" style="font-weight: bold;font-size:20px"></span></a></h2>
+          <div class="story"th:each="post : ${postsProducts}">
+              <a  th:href="@{/posts/{id}(id=${post.getId()})}">
+                  <div class="story-img">
+                      <img th:src="'/img/'+${post.getCover()}" style="max-height: 195px">
+                  </div>
+                  <div class="story-headline">
+                      <h3 th:text="${post.getTitle()}"></h3>
+                      <p class="exact-time" th:text="${#temporals.format(post.getUpdatedAt(),'yyyy-MM-dd HH:mm')}"></p>
+                  </div>
+              </a>
+          </div>
+      </section> <!-- End of Products-->
+
+
+      <section class="entertainment">
+      <h2> <a class="link" th:href="@{/Programming}" >Programming <span class="fa fa-angle-right" style="font-weight: bold;font-size:20px"></span></a></h2>
+          <div class="story"th:each="post : ${postsProgramming}">
+              <a  th:href="@{/posts/{id}(id=${post.getId()})}">
+                  <div class="story-img">
+                      <img th:src="'/img/'+${post.getCover()}" style="max-height: 195px">
+                  </div>
+                  <div class="story-headline">
+                      <h3 th:text="${post.getTitle()}"></h3>
+                      <p class="exact-time" th:text="${#temporals.format(post.getUpdatedAt(),'yyyy-MM-dd HH:mm')}"></p>
+                  </div>
+              </a>
+          </div>
+      </section> <!-- End of Programming -->
+
+      <section class="more">
+         <h2><a class="link" th:href="@{/more}">More articles... <span class="fa fa-angle-right" style="font-weight: bold;font-size:20px"></span></a> </h2>
+            <a th:each="post : ${postsMore}" th:href="@{/posts/{id}(id=${post.getId()})}" >
+              <div class="more-headline">
+                <h3 th:text="${post.getTitle()}"></h3>
+                <p class="exact-time"></p>
+              </div>
+            </a>
+      </section> <!-- End of class="more" -->
+
+    </main> <!-- End of class="main" -->
+
+
+    <!-- Footer Links -->
+    <div th:replace="fragment/layout::footer"> </div>
+    <div th:replace="fragment/layout::scripts"> </div>
+</body>
+
+</html>

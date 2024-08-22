@@ -1,0 +1,28 @@
+<html class="no-js" lang="en" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Category</title>
+        <div th:replace="fragment/layout::ad-head"> </div>
+        <div th:replace="fragment/layout::re-head"> </div>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar navbar-expand sticky-top bg-primary navbar-dark flex-column flex-md-row bd-navbar">
+      <div th:replace="fragment/layout::ad-header"> </div>
+    </header>
+    <!-- End Header -->
+    <form th:action="@{/dash/categories/CategoryRegister}" method="post" th:object="${category}">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group"  id="re-post">
+            <div>
+                <input type="text" th:field="*{title}" name="title" class="form-control" placeholder="Category Title">
+            </div>
+            <div style="margin-top: 50px">
+                <input type="submit" class="btn btn-primary" id="submit-post" value="Submit" >
+                <a type="reset"class="btn btn-danger" id="cancel-post"  th:href="@{/dash/categories}">Cancel</a>
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>

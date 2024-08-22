@@ -1,0 +1,72 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <title th:text="${'Post '+post.getId()}"></title>
+  <div th:replace="fragment/layout::head"> </div>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div th:replace="fragment/layout::header"></div>
+
+    <!-- Main -->
+    <main class="main-article" role="main">
+
+      <article class="article">
+
+        <h2 th:text="${post.getTitle()}"></h2>
+        <small th:text="${#temporals.format(post.getUpdatedAt(),'yyyy-MM-dd HH:mm')}" ></small><br>
+        <p th:text=" ${post.users !=null} ?' '+${post?.users?.name} : ' No Name' "></p>
+
+        <div> <img th:src="'/img/'+${post.getCover()}"></div>
+
+        <p class="intro-text" th:utext="${post.getBody()}"></p>
+
+
+      </article> <!-- End of  class="article" -->
+
+      <!-- Sidebar -->
+      <aside class="sidebar" role="complementary">
+        <h2>Latest Posts</h2>
+        <a  th:each="post : ${posts}" th:href="@{/posts/{id}(id=${post.getId()})}" >
+          <div class="sidebar-headline top-comments">
+            <h3 th:text="${post.getTitle()}"></h3>
+            <p style="  margin-top: 5px;
+                            color:#0c0c0c;
+                            font-size: 0.7rem;
+                            font-weight: normal;
+                             margin-top: 0;
+                              color:#0C0C0CFF;"
+               th:text="${#temporals.format(post.getUpdatedAt(),'yyyy-MM-dd HH:mm')}"></p>
+          </div>
+        </a>
+
+
+        <h2>More Posts</h2>
+        <a  th:each="post : ${postsMore}" th:href="@{/posts/{id}(id=${post.getId()})}" >
+          <div class="sidebar-headline top-comments">
+            <h3 th:text="${post.getTitle()}"></h3>
+            <p style="  margin-top: 5px;
+                            color:#0c0c0c;
+                            font-size: 0.7rem;
+                            font-weight: normal;
+                             margin-top: 0;
+                              color:#0C0C0CFF;"
+               th:text="${#temporals.format(post.getUpdatedAt(),'yyyy-MM-dd HH:mm')}"></p>
+          </div>
+        </a>
+
+      </aside> <!-- End of  class="sidebar" -->
+
+    </main> <!-- End of  class="main-article" -->
+
+
+    <!-- Footer Links -->
+    <div th:replace="fragment/layout::footer"> </div>
+    <div th:replace="fragment/layout::scripts"> </div>
+
+</body>
+
+</html>

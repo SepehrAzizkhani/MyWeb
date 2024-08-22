@@ -1,0 +1,50 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <div th:replace="fragment/layout::head"> </div>
+  <title>Home | Tech News</title>
+  <style>
+    .post-card{
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body id="top">
+<div th:replace="fragment/layout::header"> </div>
+
+
+<nav aria-label="Page navigation" style="float: right; position: fixed; right: 200px; margin:30px;">
+    <div class="pagination1">
+       <a  th:href="@{${#httpServletRequest.requestURL}(page = ${posts.number - 1})}">&#60;&#60;</a>
+        <a th:each=" i : ${#numbers.sequence(0 ,posts.totalPages - 1)}"
+            th:classappend="${posts.number == i} ? 'activee' "
+            th:href="@{${#httpServletRequest.requestURL}(page = ${i})}">[[${i + 1}]] </a>
+        <a th:href="@{${#httpServletRequest.requestURL}(page = ${posts.number + 1})}">&#62;&#62;</a>
+    </div>
+</nav>
+       <section class="sport" style="margin: 70px" >
+              <div class="story"th:each="post : ${posts}">
+                <a  th:href="@{/posts/{id}(id=${post.getId()})}">
+                  <div class="story-img">
+                    <img th:src="'/img/'+${post.getCover()}" style="max-height: 195px">
+                  </div>
+                  <div class="story-headline">
+                    <h3 th:text="${post.getTitle()}"></h3>
+                    <p class="exact-time" th:text="${#temporals.format(post.getUpdatedAt(),'yyyy-MM-dd HH:mm')}"></p>
+                  </div>
+                </a>
+              </div>
+       </section>
+<!--<p th:text="${#httpServletRequest.requestURL}"></p>-->
+
+<!-- Footer Links -->
+<div th:replace="fragment/layout::footer"> </div>
+<div th:replace="fragment/layout::scripts"> </div>
+</body>
+
+</html>

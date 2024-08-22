@@ -1,0 +1,43 @@
+<html class="no-js" lang="en" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <div th:replace="fragment/layout::re-head"> </div>
+<body>
+<!-- Header -->
+<div th:replace="fragment/layout::re-header"> </div>
+<!-- End Header -->
+
+<form th:action="@{/login}" method="post">
+    <div class="form-group" style="width: 600px; margin: 100px">
+        <div style="margin-bottom: 30px">
+            <input type="text" name="email" class="form-control" placeholder="Email">
+        </div>
+        <div>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+        <div style="margin-top: 50px">
+            <input type="submit" class="btn btn-primary" id="submit-post"value="Login" >
+            <div style="margin-top: 30px">
+            <small>Don't have any account?<a th:href="@{/UserRegister}">Sign up here</a> </small>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
+
+
+
+
+<!--    footer-->
+<footer id="post-footer"role="contentinfo">
+    <div th:replace="fragment/layout::re-footer"> </div>
+</footer>
+<!--    End footer-->
+
+
+</body>
+</html>
